@@ -1,4 +1,4 @@
-
+//定义棋盘规格以及记录棋子类型
 var chessBoard=[];
 for(var i=0; i<15;i++){
 	chessBoard[i]=[];
@@ -6,18 +6,11 @@ for(var i=0; i<15;i++){
 		chessBoard[i][j]=0;
 	}
 }
-var me=true;
-
+//获取convas元素，定义线条颜色宽度
 var chess=document.getElementById('chess');
 var context=chess.getContext('2d');
-
 context.strokeStyle="#000";
 context.lineWidth=2;//解决1px宽度颜色变浅问题
-
-window.onload=function(){
-	drawChessBoard();
-}
-
 //绘制底盘线
 var drawChessBoard=function(){
 	for(var i=0; i<15; i++){
@@ -31,7 +24,18 @@ var drawChessBoard=function(){
 	}
 }
 
+window.onload=function(){
+	drawChessBoard();
+}
+
+//声明是否轮到自己下棋
+var me=true;
+//声明棋盘记录以及步数
+var chessBoardRecord=[];
+var chessStep=0;
+
 var oneStep=function(i,j,me){
+	//画棋子
 	context.beginPath();
 	context.arc(15+i*30,15+j*30,13,0,2*Math.PI);
 	context.closePath();
@@ -48,7 +52,6 @@ var oneStep=function(i,j,me){
 	chessStep++;
 	console.log(chessStep);
 }
-
 
 chess.onclick=function(e){
 	var x=e.offsetX;
@@ -73,9 +76,6 @@ chess.onclick=function(e){
 
 /*自创*/
 //悔棋
-//声明棋盘记录以及步数
-var chessBoardRecord=[];
-var chessStep=0;
 var withdraw=document.getElementById('withdraw');
 withdraw.onclick=function(){
 	if(chessStep>=2){
