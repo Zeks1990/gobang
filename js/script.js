@@ -1,7 +1,5 @@
 
 var chessBoard=[];
-var chessBoardRecord=[];
-var chessStep=0;
 for(var i=0; i<15;i++){
 	chessBoard[i]=[];
 	for(var j=0; j<15; j++){
@@ -14,7 +12,7 @@ var chess=document.getElementById('chess');
 var context=chess.getContext('2d');
 
 context.strokeStyle="#000";
-context.lineWidth=2;
+context.lineWidth=2;//解决1px宽度颜色变浅问题
 
 window.onload=function(){
 	drawChessBoard();
@@ -75,6 +73,9 @@ chess.onclick=function(e){
 
 /*自创*/
 //悔棋
+//声明棋盘记录以及步数
+var chessBoardRecord=[];
+var chessStep=0;
 var withdraw=document.getElementById('withdraw');
 withdraw.onclick=function(){
 	if(chessStep>=2){

@@ -1,3 +1,12 @@
+*{
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-touch-callout: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-ms-touch-action: none;
+	-moz-user-select: -moz-none;
+}
 canvas{
 	display:block;
 	margin:50px auto;
