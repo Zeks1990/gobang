@@ -1,0 +1,16 @@
+canvas{
+	display:block;
+	margin:50px auto;
+	box-shadow:-2px -2px 2px #efefef, 5px 5px 5px #b9b9b9;
+	background-color:#a77157;
+}
+#withdraw{
+	margin:auto;
+	border:1px solid #000;
+	border-radius:3px;
+	line-height:26px;
+	font-size:24px;
+	width:80px;
+	text-align:center;
+	cursor:pointer;
+}
