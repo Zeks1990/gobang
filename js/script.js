@@ -92,6 +92,8 @@ for(var i=0;i<count;i++){
 	myWin[i]=0;
 	matchWin[i]=0;
 }
+//声明赢法记录
+var winsRecord=[];
 
 
 var oneStep=function(i,j,me){
@@ -129,22 +131,37 @@ chess.onclick=function(e){
 		}else{
 			chessBoard[i][j]=2;
 		}
-		me=!me;
 		//记录走过的棋子
 		chessBoardRecord.push([i,j]);
-		console.log(i+","+j);
+		//console.log(i+","+j);
+		var arr=[];
 		for(var k=0;k<count;k++){
 			if(wins[i][j][k]){
-				myWin[k]++;
-				matchWin[k]=9;
+				if(me){
+					myWin[k]++;
+					matchWin[k]+=9;
+				}else{
+					myWin[k]+=9;
+					matchWin[k]++;
+				}
 				if(myWin[k]==5){
 					setTimeout(function(){
-						window.alert("你赢了！");
+						window.alert("黑棋胜！");
+					},0);
+					over=true;
+				}else if(matchWin[k]==5){
+					setTimeout(function(){
+						window.alert("白棋胜！");
 					},0);
 					over=true;
 				}
+				arr.push(k);
 			}
 		}
+		//console.log(arr);
+		winsRecord.push(arr);
+		//console.log(winsRecord);
+		me=!me;
 	}
 }
 
@@ -153,23 +170,36 @@ chess.onclick=function(e){
 //悔棋
 var withdraw=document.getElementById('withdraw');
 withdraw.onclick=function(){
-	if(chessStep>=2){
-		for(var i=0;i<2;i++){
-			var record=chessBoardRecord.pop();
-			var recordX=record[0]*30+15;
-			var recordY=record[1]*30+15;
-			context.clearRect(recordX-15,recordY-15,30,30);
-			context.beginPath();
-			context.closePath();
-			//横线
-			context.moveTo(record[0]==0?recordX:recordX-15,recordY);
-			context.lineTo(record[0]==14?recordX:recordX+15,recordY);
-			//竖线
-			context.moveTo(recordX,record[1]==0?recordY:recordY-15);
-			context.lineTo(recordX,record[1]==14?recordY:recordY+15);
-			context.stroke();
-			chessBoard[record[0]][record[1]]=0;
-			chessStep--;
+	if(chessStep>=1){
+		var record=chessBoardRecord.pop();
+		var recordX=record[0]*30+15;
+		var recordY=record[1]*30+15;
+		context.clearRect(recordX-15,recordY-15,30,30);
+		context.beginPath();
+		context.closePath();
+		//横线
+		context.moveTo(record[0]==0?recordX:recordX-15,recordY);
+		context.lineTo(record[0]==14?recordX:recordX+15,recordY);
+		//竖线
+		context.moveTo(recordX,record[1]==0?recordY:recordY-15);
+		context.lineTo(recordX,record[1]==14?recordY:recordY+15);
+		context.stroke();
+		chessBoard[record[0]][record[1]]=0;
+		chessStep--;
+		over=false;
+		me=!me;
+		var withdrawWinsRecord=winsRecord.pop();
+		console.log(withdrawWinsRecord);
+		if(me){
+			for(var i=0;i<withdrawWinsRecord.length;i++){
+				myWin[withdrawWinsRecord[i]]--;
+				matchWin[withdrawWinsRecord[i]]-=9;
+			}
+		}else{
+			for(var i=0;i<withdrawWinsRecord.length;i++){
+				myWin[withdrawWinsRecord[i]]-=9;
+				matchWin[withdrawWinsRecord[i]]--;
+			}
 		}
 	}else{
 		alert('无法悔棋了~');
