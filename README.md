@@ -1,5 +1,5 @@
 # gobang
-参考慕课网channingbreeze大神的视频教程http://www.imooc.com/u/1170998/courses?sort=publish
+参考慕课网channingbreeze大神的视频教程http://www.imooc.com/u/1170998/courses?sort=publish  
 通篇看完之后决定跟着写一下，期间肯定会有别的新想法加进去，到时候会试着开发的，龟速更新，慢慢来~
 # 2017-03-XX
 画出棋盘，实现落子的判断，增加了悔棋功能+重新绘制棋盘，清明之前的说明文档记不清不写了，大概就是这样~
