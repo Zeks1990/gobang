@@ -7,19 +7,29 @@
 	-ms-touch-action: none;
 	-moz-user-select: -moz-none;
 }
+.title{
+	text-align:center;
+}
+#mode{
+	color:#e74c3c;
+}
 canvas{
 	display:block;
-	margin:50px auto;
+	margin:20px auto 50px;
 	box-shadow:-2px -2px 2px #efefef, 5px 5px 5px #b9b9b9;
 	background-color:#a77157;
 }
-#withdraw{
-	margin:auto;
+.button{
+	font-size:24px;
+	text-align:center;
+}
+.button>div{
+	display:inline-block;
+	margin:0 5px;
 	border:1px solid #000;
 	border-radius:3px;
 	line-height:26px;
-	font-size:24px;
-	width:80px;
-	text-align:center;
+	width:114px;
+	padding:2px 0;
 	cursor:pointer;
 }
