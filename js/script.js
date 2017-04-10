@@ -304,6 +304,25 @@ changeMode.onclick=function(){
 //重新开局
 var restart=document.getElementById('restart');
 restart.onclick=function(){
-	//drawChessBoard();
-	location.reload();
+	//location.reload();
+
+	for(var i=0; i<15;i++){
+		chessBoard[i]=[];
+		for(var j=0; j<15; j++){
+			chessBoard[i][j]=0;
+		}
+	}
+	context.clearRect(0,0,450,450);
+	context.beginPath();
+	context.closePath();
+	drawChessBoard();
+	me=true;
+	chessBoardRecord=[];
+	chessStep=0;
+	over=false;
+	for(var i=0;i<count;i++){
+		myWin[i]=0;
+		matchWin[i]=0;
+	}
+	winsRecord=[];
 }
