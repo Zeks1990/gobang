@@ -137,11 +137,13 @@ var winFun=function(i,j){
 					window.alert("黑棋胜！");
 				},0);
 				over=true;
+				return;
 			}else if(matchWin[k]==5){
 				setTimeout(function(){
 					window.alert("白棋胜！");
 				},0);
 				over=true;
+				return;
 			}
 			arr.push(k);
 		}
