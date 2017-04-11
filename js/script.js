@@ -238,7 +238,7 @@ var computerAI=function(){
 			}
 		}
 	}
-	oneStep(u,v,false);
+	oneStep(u,v,me);
 	chessBoard[u][v]=2;
 	winFun(u,v);
 	me=!me;
@@ -327,4 +327,17 @@ restart.onclick=function(){
 		matchWin[i]=0;
 	}
 	winsRecord=[];
+}
+//电脑先下
+var AIStart=document.getElementById('AIStart');
+AIStart.onclick=function(){
+	if(status==2){
+		me=!me;
+		oneStep(7,7,me);
+		chessBoard[7][7]=2;
+		winFun(7,7);
+		me=!me;
+	}else{
+		alert('请重新开局或选择人机模式再点击~');
+	}
 }
